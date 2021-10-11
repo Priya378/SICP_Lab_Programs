@@ -18,8 +18,8 @@
 ;2. Define a procedure to accept a list as its argument and return a list of square of elements
 (define (squareList arr)
   (cond
-    ((null? arr) '())
-    (else (append (list (* (car arr) (car arr))) (squareList (cdr arr))))))
+    ((null? arr) 0)
+    (else (+ (* (car arr) (car arr)) (squareList (cdr arr))))))
 #|Function Calls:
 (squareList '(1 2 3))
 (squareList '(4 9))
