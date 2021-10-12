@@ -57,6 +57,14 @@
 ;(accT + 0 '(1 2 ((3 4) 5)))
 ;(accT * 1 '(1 2 ((3 4) 5)))
 
+(define (enumerateT tr)
+  (cond
+    ((null? tr) null)
+    ((pair? tr) (append (enumerateT (car tr))
+                        (enumerateT (cdr tr))))
+    (else (list tr))))
+;(enumerateT '(1 2 (3 4 (5 6))))
+
 ;Lab programs
 ;1. Define a procedure to find product of cube of all elements in a given tree
 (define (cubeT tr)
@@ -116,11 +124,11 @@
 ;5. Define a procedure to increment all tree elements by 4 and return a list of even numbers
 ;using sequence of procedures
 (define (procE tr)
-  (filterT
+  (enumerateT (filterT
    (lambda (x) (= (modulo x 2) 0))
    (mapT
     (lambda (x) (+ x 4))
-    tr)))
+    tr))))
 #|Function Calls:
 (procE '(1 2 (3 (4 5)) 6))
 (procE '(3 4 5 6 7))
